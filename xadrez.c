@@ -4,14 +4,49 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
+void moverTorreRecursivo(int casas) {
+    if (casas > 0) {
+        printf("Direita\n");
+        moverTorreRecursivo(casas - 1);
+    }
+}
+
+void moverBispoRecursivo(int casas) {
+    if (casas > 0) {
+        printf("Cima, Direita\n");
+        moverBispoRecursivo(casas - 1);
+    }
+}
+
+void moverRainhaRecursivo(int casas) {
+    if (casas > 0) {
+        printf("Esquerda\n");
+        moverRainhaRecursivo(casas - 1);
+    }
+}
+
+void moverCavaloRecursivo(int casasParaCima, int casasParaDireita) {
+    if (casasParaCima > 0) {
+        printf("Cima ");
+        moverCavaloRecursivo(casasParaCima - 1, casasParaDireita);
+    } else if (casasParaDireita > 0) {
+        printf("Direita ");
+        moverCavaloRecursivo(casasParaCima, casasParaDireita - 1);
+    }
+}
+
+void moverCavalo(int casasParaCima, int casasParaDireita) {
+    moverCavaloRecursivo(casasParaCima, casasParaDireita);
+    printf("\n");
+}
+
 int main() {
     // Nível Novato - Movimentação das Peças - concluído
 
-    // Nível Aventureiro - Movimentação do Cavalo - Atual
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
-
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
+    // Nível Aventureiro - Movimentação do Cavalo - concluído
+    
+    // Nível Mestre - Funções Recursivas e Loops Aninhados - atual
+    
     printf("Bem-vindo ao jogo de xadrez!\n");
     // Variavel para o usuário escolher a peça a mover
     char peca;
@@ -19,8 +54,8 @@ int main() {
     const int casasTorre = 5;
     const int casasBispo = 5;
     const int casasRainha = 8;
-    const int casasCavaloParaBaixo = 2;
-    int casasCavaloParaEsquerda = 1;
+    const int casasCavaloParaCima = 2;
+    const int casasCavaloParaDireita = 1;
     
     do {
         // Exibindo o menu para o usuário
@@ -38,36 +73,19 @@ int main() {
         {
             case 'T':
             case 't':
-                printf("Torre selecionada. Movendo 5 casas para a direita.\n");
-                for (int i = 1; i <= casasTorre; i++) {
-                    printf("Direita\n");
-                }
+                moverTorreRecursivo(casasTorre);
                 break;
             case 'B':
             case 'b':
-                printf("Bispo selecionado. Movendo 5 casas na diagonal para cima e à direita.\n");
-                for (int i = 1; i <= casasBispo; i++) {
-                    printf("Cima, Direita\n");
-                }
+                moverBispoRecursivo(casasBispo);
                 break;
             case 'R':
             case 'r':
-                printf("Rainha selecionada. Movendo 8 casas para a esquerda.\n");
-                for (int i = 1; i <= casasRainha; i++) {
-                    printf("Esquerda\n");
-                }
+                moverRainhaRecursivo(casasRainha);
                 break;
             case 'C':
             case 'c':
-                while (casasCavaloParaEsquerda) {
-                    casasCavaloParaEsquerda--;
-                    printf("Cavalo selecionado. Movendo 2 casas para baixo e 1 casa para a esquerda.\n");
-                    for (int i = 1; i <= casasCavaloParaBaixo; i++) {
-                        printf("Baixo ");
-                    }
-                    printf("Esquerda");
-                }
-                printf("\n");
+                moverCavalo(casasCavaloParaCima, casasCavaloParaDireita);
                 break;
             case 'F':
             case 'f':
@@ -81,13 +99,6 @@ int main() {
     } while (peca != 'F' && peca != 'f');
 
     printf("Jogo finalizado. Obrigado por jogar!\n");
-    
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
-
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
-
+        
     return 0;
 }
