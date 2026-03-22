@@ -5,7 +5,12 @@
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
 int main() {
-    // Nível Novato - Movimentação das Peças
+    // Nível Novato - Movimentação das Peças - concluído
+
+    // Nível Aventureiro - Movimentação do Cavalo - Atual
+    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
+    // Um loop pode representar a movimentação horizontal e outro vertical.
+
     // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
     printf("Bem-vindo ao jogo de xadrez!\n");
     // Variavel para o usuário escolher a peça a mover
@@ -14,6 +19,8 @@ int main() {
     const int casasTorre = 5;
     const int casasBispo = 5;
     const int casasRainha = 8;
+    const int casasCavaloParaBaixo = 2;
+    int casasCavaloParaEsquerda = 1;
     
     do {
         // Exibindo o menu para o usuário
@@ -21,6 +28,7 @@ int main() {
         printf("T - Torre\n");
         printf("B - Bispo\n");
         printf("R - Rainha\n");
+        printf("C - Cavalo\n");
         printf("F - Finalizar o jogo\n");
         // Lendo a opção
         scanf(" %c", &peca);
@@ -49,6 +57,18 @@ int main() {
                     printf("Esquerda\n");
                 }
                 break;
+            case 'C':
+            case 'c':
+                while (casasCavaloParaEsquerda) {
+                    casasCavaloParaEsquerda--;
+                    printf("Cavalo selecionado. Movendo 2 casas para baixo e 1 casa para a esquerda.\n");
+                    for (int i = 1; i <= casasCavaloParaBaixo; i++) {
+                        printf("Baixo ");
+                    }
+                    printf("Esquerda");
+                }
+                printf("\n");
+                break;
             case 'F':
             case 'f':
                 printf("Finalizando o jogo...\n");
@@ -61,11 +81,7 @@ int main() {
     } while (peca != 'F' && peca != 'f');
 
     printf("Jogo finalizado. Obrigado por jogar!\n");
-
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
-
+    
     // Nível Mestre - Funções Recursivas e Loops Aninhados
     // Sugestão: Substitua as movimentações das peças por funções recursivas.
     // Exemplo: Crie uma função recursiva para o movimento do Bispo.
